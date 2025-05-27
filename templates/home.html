@@ -7,205 +7,192 @@
 			content="width=device-width, initial-scale=1.0"
 		/>
 		<title>Student Exam Performance Predictor</title>
-
-		<!-- Bootstrap 5 CDN -->
+		<script src="https://cdn.tailwindcss.com"></script>
 		<link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
 			rel="stylesheet"
 		/>
-
-		<!-- Google Fonts -->
-		<link
-			href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"
-			rel="stylesheet"
-		/>
-
 		<style>
 			body {
-				background: #f5f7fa;
 				font-family: "Inter", sans-serif;
 			}
-
-			.container {
-				margin-top: 40px;
+			.fade-in {
+				animation: fadeInUp 0.8s ease-out both;
 			}
-
-			.card {
-				box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
-				border-radius: 16px;
-			}
-
-			.form-label {
-				font-weight: 600;
-			}
-
-			h1,
-			legend {
-				text-align: center;
-				font-weight: 700;
-				margin-bottom: 20px;
-			}
-
-			h2 {
-				text-align: center;
-				margin-top: 30px;
-				color: #0d6efd;
+			@keyframes fadeInUp {
+				from {
+					opacity: 0;
+					transform: translateY(20px);
+				}
+				to {
+					opacity: 1;
+					transform: translateY(0);
+				}
 			}
 		</style>
 	</head>
-	<body>
-		<div class="container">
-			<div class="card p-4">
-				<h1>Student Exam Performance Indicator</h1>
+	<body class="bg-gradient-to-br from-indigo-100 via-white to-indigo-200 min-h-screen py-10 px-4">
+		<div class="max-w-4xl mx-auto bg-white shadow-2xl rounded-3xl p-8 sm:p-12 fade-in">
+			<h1 class="text-4xl sm:text-5xl font-extrabold text-center text-indigo-700 mb-4">🎓 Performance Predictor</h1>
+			<p class="text-center text-gray-600 text-lg mb-8">Enter your details to get an AI-based prediction of your math score!</p>
 
-				<form
-					action="{{ url_for('predict_datapoint') }}"
-					method="post"
-				>
-					<legend>Prediction Form</legend>
-
-					<div class="row mb-3">
-						<div class="col-md-6">
-							<label class="form-label">Gender</label>
-							<select
-								class="form-select"
-								name="gender"
-								required
+			<form
+				action="{{ url_for('predict_datapoint') }}"
+				method="POST"
+				class="space-y-8 animate__animated animate__fadeInUp"
+			>
+				<!-- Row 1 -->
+				<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+					<div class="transition duration-300 transform hover:scale-105">
+						<label class="block text-sm font-semibold text-gray-700 mb-2">Gender</label>
+						<select
+							name="gender"
+							required
+							class="w-full border-gray-300 rounded-xl shadow-md focus:ring-indigo-500 focus:border-indigo-500"
+						>
+							<option
+								disabled
+								selected
+								value=""
 							>
-								<option
-									selected
-									disabled
-									value=""
-								>
-									Select your Gender
-								</option>
-								<option value="male">Male</option>
-								<option value="female">Female</option>
-							</select>
-						</div>
-						<div class="col-md-6">
-							<label class="form-label">Race or Ethnicity</label>
-							<select
-								class="form-select"
-								name="ethnicity"
-								required
-							>
-								<option
-									selected
-									disabled
-									value=""
-								>
-									Select Ethnicity
-								</option>
-								<option value="group A">Group A</option>
-								<option value="group B">Group B</option>
-								<option value="group C">Group C</option>
-								<option value="group D">Group D</option>
-								<option value="group E">Group E</option>
-							</select>
-						</div>
+								Select your Gender
+							</option>
+							<option value="male">Male</option>
+							<option value="female">Female</option>
+						</select>
 					</div>
 
-					<div class="row mb-3">
-						<div class="col-md-6">
-							<label class="form-label">Parental Level of Education</label>
-							<select
-								class="form-select"
-								name="parental_level_of_education"
-								required
+					<div class="transition duration-300 transform hover:scale-105">
+						<label class="block text-sm font-semibold text-gray-700 mb-2">Race or Ethnicity</label>
+						<select
+							name="ethnicity"
+							required
+							class="w-full border-gray-300 rounded-xl shadow-md focus:ring-indigo-500 focus:border-indigo-500"
+						>
+							<option
+								disabled
+								selected
+								value=""
 							>
-								<option
-									selected
-									disabled
-									value=""
-								>
-									Select Parent Education
-								</option>
-								<option value="associate's degree">Associate's Degree</option>
-								<option value="bachelor's degree">Bachelor's Degree</option>
-								<option value="high school">High School</option>
-								<option value="master's degree">Master's Degree</option>
-								<option value="some college">Some College</option>
-								<option value="some high school">Some High School</option>
-							</select>
-						</div>
-						<div class="col-md-6">
-							<label class="form-label">Lunch Type</label>
-							<select
-								class="form-select"
-								name="lunch"
-								required
+								Select Ethnicity
+							</option>
+							<option value="group A">Group A</option>
+							<option value="group B">Group B</option>
+							<option value="group C">Group C</option>
+							<option value="group D">Group D</option>
+							<option value="group E">Group E</option>
+						</select>
+					</div>
+				</div>
+
+				<!-- Row 2 -->
+				<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+					<div class="transition duration-300 transform hover:scale-105">
+						<label class="block text-sm font-semibold text-gray-700 mb-2">Parental Education Level</label>
+						<select
+							name="parental_level_of_education"
+							required
+							class="w-full border-gray-300 rounded-xl shadow-md focus:ring-indigo-500 focus:border-indigo-500"
+						>
+							<option
+								disabled
+								selected
+								value=""
 							>
-								<option
-									selected
-									disabled
-									value=""
-								>
-									Select Lunch Type
-								</option>
-								<option value="free/reduced">Free/Reduced</option>
-								<option value="standard">Standard</option>
-							</select>
-						</div>
+								Select Education Level
+							</option>
+							<option value="associate's degree">Associate's Degree</option>
+							<option value="bachelor's degree">Bachelor's Degree</option>
+							<option value="high school">High School</option>
+							<option value="master's degree">Master's Degree</option>
+							<option value="some college">Some College</option>
+							<option value="some high school">Some High School</option>
+						</select>
 					</div>
 
-					<div class="row mb-3">
-						<div class="col-md-6">
-							<label class="form-label">Test Preparation Course</label>
-							<select
-								class="form-select"
-								name="test_preparation_course"
-								required
+					<div class="transition duration-300 transform hover:scale-105">
+						<label class="block text-sm font-semibold text-gray-700 mb-2">Lunch Type</label>
+						<select
+							name="lunch"
+							required
+							class="w-full border-gray-300 rounded-xl shadow-md focus:ring-indigo-500 focus:border-indigo-500"
+						>
+							<option
+								disabled
+								selected
+								value=""
 							>
-								<option
-									selected
-									disabled
-									value=""
-								>
-									Select Course
-								</option>
-								<option value="none">None</option>
-								<option value="completed">Completed</option>
-							</select>
-						</div>
-						<div class="col-md-3">
-							<label class="form-label">Reading Score</label>
-							<input
-								class="form-control"
-								type="number"
-								name="reading_score"
-								placeholder="0-100"
-								min="0"
-								max="100"
-								required
-							/>
-						</div>
-						<div class="col-md-3">
-							<label class="form-label">Writing Score</label>
-							<input
-								class="form-control"
-								type="number"
-								name="writing_score"
-								placeholder="0-100"
-								min="0"
-								max="100"
-								required
-							/>
-						</div>
+								Select Lunch Type
+							</option>
+							<option value="free/reduced">Free/Reduced</option>
+							<option value="standard">Standard</option>
+						</select>
+					</div>
+				</div>
+
+				<!-- Row 3 -->
+				<div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+					<div class="transition duration-300 transform hover:scale-105">
+						<label class="block text-sm font-semibold text-gray-700 mb-2">Test Prep Course</label>
+						<select
+							name="test_preparation_course"
+							required
+							class="w-full border-gray-300 rounded-xl shadow-md focus:ring-indigo-500 focus:border-indigo-500"
+						>
+							<option
+								disabled
+								selected
+								value=""
+							>
+								Select Course
+							</option>
+							<option value="none">None</option>
+							<option value="completed">Completed</option>
+						</select>
 					</div>
 
-					<div class="text-center">
+					<div class="transition duration-300 transform hover:scale-105">
+						<label class="block text-sm font-semibold text-gray-700 mb-2">Reading Score</label>
 						<input
-							class="btn btn-primary px-4"
-							type="submit"
-							value="Predict Math Score"
+							type="number"
+							name="reading_score"
+							required
+							min="0"
+							max="100"
+							placeholder="0 - 100"
+							class="w-full border-gray-300 rounded-xl shadow-md focus:ring-indigo-500 focus:border-indigo-500"
 						/>
 					</div>
-				</form>
-			</div>
+
+					<div class="transition duration-300 transform hover:scale-105">
+						<label class="block text-sm font-semibold text-gray-700 mb-2">Writing Score</label>
+						<input
+							type="number"
+							name="writing_score"
+							required
+							min="0"
+							max="100"
+							placeholder="0 - 100"
+							class="w-full border-gray-300 rounded-xl shadow-md focus:ring-indigo-500 focus:border-indigo-500"
+						/>
+					</div>
+				</div>
+
+				<!-- Submit Button -->
+				<div class="text-center pt-4">
+					<button
+						type="submit"
+						class="px-8 py-3 bg-indigo-600 text-white text-lg font-semibold rounded-full shadow-xl hover:bg-indigo-700 hover:scale-105 transition-all duration-300"
+					>
+						Predict Math Score
+					</button>
+				</div>
+			</form>
 
 			{% if results %}
-			<h2>Your predicted math score is: {{ results }}</h2>
+			<div class="mt-10 text-center">
+				<h2 class="text-2xl font-bold text-green-600 animate-pulse">Your predicted math score is: {{ results }}</h2>
+			</div>
 			{% endif %}
 		</div>
 	</body>

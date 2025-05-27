@@ -6,9 +6,67 @@
 			name="viewport"
 			content="width=device-width, initial-scale=1.0"
 		/>
-		<title>index</title>
+		<title>Student Exam Performance</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+		<style>
+			/* Optional: Glassmorphism effect */
+			.glass-card {
+				background: rgba(255, 255, 255, 0.1);
+				border-radius: 1.5rem;
+				box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+				backdrop-filter: blur(12px);
+				-webkit-backdrop-filter: blur(12px);
+				border: 1px solid rgba(255, 255, 255, 0.25);
+			}
+		</style>
 	</head>
-	<body>
-		<h1>Hi brother</h1>
+	<body
+		class="bg-gradient-to-br from-purple-800 via-indigo-900 to-black min-h-screen flex items-center justify-center text-white px-4 font-[Inter,sans-serif]"
+	>
+		<div class="glass-card p-10 max-w-2xl w-full text-center animate-fade-in-up">
+			<!-- Title -->
+			<h1
+				class="text-4xl sm:text-5xl font-extrabold mb-4 tracking-wide bg-clip-text text-transparent bg-gradient-to-r from-purple-300 via-pink-300 to-indigo-200"
+			>
+				🚀 Student Exam Predictor
+			</h1>
+
+			<!-- Description -->
+			<p class="text-lg sm:text-xl font-light mb-6 leading-relaxed">
+				Unlock insights with the <span class="font-semibold text-indigo-200">Student Exam Performance Indicator</span> — a machine learning
+				powered app that predicts your math score based on personal & academic factors.
+			</p>
+
+			<!-- Supporting line -->
+			<p class="text-sm mb-8 text-gray-200">
+				✨ Simply input details like gender, parental education, reading and writing scores — and get results instantly.
+			</p>
+
+			<!-- CTA Button -->
+			<a
+				href="{{ url_for('predict_datapoint') }}"
+				class="inline-block px-8 py-3 bg-gradient-to-r from-white to-indigo-100 text-indigo-800 font-bold rounded-full shadow-xl hover:shadow-2xl hover:scale-105 transition duration-300"
+			>
+				🔎 Predict Your Score
+			</a>
+		</div>
+
+		<!-- Optional subtle animation -->
+		<style>
+			@keyframes fade-in-up {
+				0% {
+					opacity: 0;
+					transform: translateY(20px);
+				}
+				100% {
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+
+			.animate-fade-in-up {
+				animation: fade-in-up 1s ease-out forwards;
+			}
+		</style>
 	</body>
 </html>
